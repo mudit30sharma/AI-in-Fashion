@@ -1,0 +1,58 @@
+age = input("What is your age?")
+gender = input("What is your gender? (M/F/O)")
+prescription = input("Do you have a prescription? (Y/N)")
+
+if prescription == "Y":
+    sphere = input("What is your sphere value?")
+    cyl = input("What is your cylinder value?")
+    axis = input("What is your axis value?")
+
+brand_options = ["Nike", "Adidas", "Puma"]
+colour_options = ["Black", "Brown", "Grey"]
+shape_options = ["Round", "Rectangle", "Aviator"]
+
+brand_filter = input("Do you have a preferred brand? (Y/N)")
+if brand_filter == "Y":
+    brand = input("What brand are you looking for? (Nike/Adidas/Puma)")
+    if brand not in brand_options:
+        print("Sorry, that brand is not available.")
+else:
+    brand = None
+
+colour_filter = input("Do you have a preferred colour? (Y/N)")
+if colour_filter == "Y":
+    colour = input("What colour are you looking for? (Black/Brown/Grey)")
+    if colour not in colour_options:
+        print("Sorry, that colour is not available.")
+else:
+    colour = None
+
+shape_filter = input("Do you have a preferred shape? (Y/N)")
+if shape_filter == "Y":
+    shape = input("What shape are you looking for? (Round/Rectangle/Aviator)")
+    if shape not in shape_options:
+        print("Sorry, that shape is not available.")
+else:
+    shape = None
+
+recommendations = []
+for option in brand_options:
+    if brand is not None and option != brand:
+        continue
+    for colour_option in colour_options:
+        if colour is not None and colour_option != colour:
+            continue
+        for shape_option in shape_options:
+            if shape is not None and shape_option != shape:
+                continue
+            recommendations.append((option, colour_option, shape_option))
+
+print("Here are your recommendations:")
+for i, recommendation in enumerate(recommendations):
+    print(f"{i+1}. {recommendation[0]} {recommendation[1]} {recommendation[2]}")
+
+selection = int(input("Which option would you like to select?"))
+if selection > len(recommendations):
+    print("Sorry, that is not a valid selection.")
+else:
+    print(f"You have selected {recommendations[selection-1][0]} {recommendations[selection-1][1]} {recommendations[selection-1][2]}.")
